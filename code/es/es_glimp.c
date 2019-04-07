@@ -36,6 +36,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 #include <EGL/egl.h>
 #include <EGL/eglext.h>
 
+#include <wayland-client.h>
+
 #include "../renderer/tr_local.h"
 #include "../client/client.h"
 #include "../sys/sys_local.h"
@@ -241,6 +243,8 @@ static EGLDisplay   g_EGLDisplay;
 static EGLConfig    g_EGLConfig;
 static EGLContext   g_EGLContext;
 static EGLSurface   g_EGLWindowSurface;
+static struct wl_display *display = NULL;
+
 
 static qboolean GLimp_StartDriverAndSetMode( int mode, qboolean fullscreen, NativeWindowType hWnd )
 {
@@ -288,7 +292,13 @@ static qboolean GLimp_StartDriverAndSetMode( int mode, qboolean fullscreen, Nati
    }
 #endif
 
-   g_EGLDisplay = eglGetDisplay(EGL_DEFAULT_DISPLAY);
+   display = wl_display_connect(NULL);
+   if (display == NULL) {
+      ri.Printf(PRINT_ALL, "wl_display_connect() failed\n");
+      return qfalse;
+   }
+
+   g_EGLDisplay = eglGetDisplay(display);
    if (g_EGLDisplay == EGL_NO_DISPLAY) {
       ri.Printf(PRINT_ALL, "eglGetDisplay() failed\n");
       return qfalse;
@@ -356,7 +366,7 @@ static qboolean GLimp_StartDriverAndSetMode( int mode, qboolean fullscreen, Nati
    // set swap interval
    if (eglSwapInterval(g_EGLDisplay, r_swapInterval->integer) == EGL_FALSE)
    {
-	  ri.Printf(PRINT_ALL, "Could not set swap interval\n");
+    ri.Printf(PRINT_ALL, "Could not set swap interval\n");
       return qfalse;
    }
 

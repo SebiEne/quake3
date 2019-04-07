@@ -48,9 +48,9 @@ extern void myglViewport(GLint x, GLint y, GLsizei width, GLsizei height);
 extern void myglScissor(GLint x, GLint y, GLsizei width, GLsizei height);
 #else
 #ifdef USE_LOCAL_HEADERS
-#	include "SDL_opengl.h"
+# include "SDL_opengl.h"
 #else
-#	include <SDL_opengl.h>
+# include <SDL_opengl.h>
 #endif
 
 extern void (APIENTRYP qglActiveTextureARB) (GLenum texture);
@@ -75,7 +75,7 @@ extern void (APIENTRYP qglUnlockArraysEXT) (void);
 #define qglCallList glCallList
 #define qglCallLists glCallLists
 #ifdef VCMODS_DEPTH
-#define qglClear myglClear
+#define qglClear glClear
 #else
 #define qglClear glClear
 #endif
@@ -146,7 +146,7 @@ extern void (APIENTRYP qglUnlockArraysEXT) (void);
 #define qglDisable glDisable
 #define qglDisableClientState glDisableClientState
 #define qglDrawArrays glDrawArrays
-#define qglDrawBuffer myglDrawBuffer
+#define qglDrawBuffer glDrawBuffer
 #define qglDrawElements glDrawElements
 #define qglDrawPixels glDrawPixels
 #define qglEdgeFlag glEdgeFlag
@@ -333,7 +333,7 @@ extern void (APIENTRYP qglUnlockArraysEXT) (void);
 #define qglRotatef glRotatef
 #define qglScaled glScaled
 #define qglScalef glScalef
-#define qglScissor myglScissor
+#define qglScissor glScissor
 #define qglSelectBuffer glSelectBuffer
 #define qglShadeModel glShadeModel
 #define qglStencilFunc glStencilFunc
@@ -384,7 +384,7 @@ extern void (APIENTRYP qglUnlockArraysEXT) (void);
 #define qglTexGeniv glTexGeniv
 #define qglTexImage1D glTexImage1D
 #ifdef VCMODS_OPENGLES
-#define qglTexImage2D myglTexImage2D
+#define qglTexImage2D glTexImage2D
 #else
 #define qglTexImage2D glTexImage2D
 #endif
@@ -421,7 +421,7 @@ extern void (APIENTRYP qglUnlockArraysEXT) (void);
 #define qglVertex4s glVertex4s
 #define qglVertex4sv glVertex4sv
 #define qglVertexPointer glVertexPointer
-#define qglViewport myglViewport
+#define qglViewport glViewport
 
 #endif
 

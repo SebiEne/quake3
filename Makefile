@@ -356,7 +356,7 @@ ifeq ($(PLATFORM),darwin)
   HAVE_VM_COMPILED=true
   CLIENT_LIBS=
   OPTIMIZE=
-  
+
   BASE_CFLAGS = -Wall -Wimplicit -Wstrict-prototypes
 
   ifeq ($(ARCH),ppc)
@@ -1392,12 +1392,12 @@ Q3OBJ = \
 #  Q3OBJ += \
 #    $(B)/client/es_gamma.o \
 #    $(B)/client/es_input.o \
-#    $(B)/client/es_snd.o 
+#    $(B)/client/es_snd.o
 #else
 #  Q3OBJ += \
 #    $(B)/client/sdl_gamma.o \
 #    $(B)/client/sdl_input.o \
-#    $(B)/client/sdl_snd.o 
+#    $(B)/client/sdl_snd.o
 #endif
 
 ifeq ($(ARCH),i386)
